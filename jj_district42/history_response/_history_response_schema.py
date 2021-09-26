@@ -13,11 +13,12 @@ __all__ = ("HistoryResponseSchema", "HistoryResponseProps",)
 class HistoryResponseProps(Props):
     def __init__(self, registry: Nilable[Mapping[str, Any]] = Nil) -> None:
         if registry is Nil:
-            registry = {}
-        registry["status"] = registry.get("status", schema.int)
-        registry["reason"] = registry.get("reason", schema.str)
-        registry["headers"] = registry.get("headers", CIMultiDictSchema())
-        registry["body"] = registry.get("body", schema.any)
+            registry = {
+                "status": schema.int,
+                "reason": schema.str,
+                "headers": CIMultiDictSchema(),
+                "body": schema.any
+            }
         super().__init__(registry)
 
     @property

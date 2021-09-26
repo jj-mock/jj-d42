@@ -14,12 +14,13 @@ __all__ = ("HistoryRequestSchema", "HistoryRequestProps",)
 class HistoryRequestProps(Props):
     def __init__(self, registry: Nilable[Mapping[str, Any]] = Nil) -> None:
         if registry is Nil:
-            registry = {}
-        registry["method"] = registry.get("method", schema.str)
-        registry["path"] = registry.get("path", schema.str)
-        registry["params"] = registry.get("params", MultiDictSchema())
-        registry["headers"] = registry.get("headers", CIMultiDictSchema())
-        registry["body"] = registry.get("body", schema.any)
+            registry = {
+                "method": schema.str,
+                "path": schema.str,
+                "params": MultiDictSchema(),
+                "headers": CIMultiDictSchema(),
+                "body": schema.any
+            }
         super().__init__(registry)
 
     @property

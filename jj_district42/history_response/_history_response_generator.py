@@ -10,7 +10,8 @@ __all__ = ("HistoryResponseGenerator",)
 
 
 class HistoryResponseGenerator(Generator, extend=True):
-    def visit_jj_history_response(self, schema: HistoryResponseSchema, **kwargs: Any) -> HistoryResponse:
+    def visit_jj_history_response(self, schema: HistoryResponseSchema,
+                                  **kwargs: Any) -> HistoryResponse:
         generated = HistoryResponse(
             status=200,
             reason="OK",
