@@ -1,0 +1,2 @@
+district42-exp-types==0.5.0
+jj==2.1.0
