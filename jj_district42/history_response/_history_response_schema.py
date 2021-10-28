@@ -4,8 +4,9 @@ from district42 import Props, SchemaVisitor
 from district42 import SchemaVisitorReturnType as ReturnType
 from district42 import schema
 from district42.types import AnySchema, Schema
-from district42_exp_types.ci_multi_dict import CIMultiDictSchema
 from niltype import Nil, Nilable
+
+from district42_exp_types.ci_multi_dict import CIMultiDictSchema
 
 __all__ = ("HistoryResponseSchema", "HistoryResponseProps",)
 
