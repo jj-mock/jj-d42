@@ -4,9 +4,8 @@ from district42 import Props, SchemaVisitor
 from district42 import SchemaVisitorReturnType as ReturnType
 from district42 import schema
 from district42.types import AnySchema, Schema
-from niltype import Nil, Nilable
-
 from district42_exp_types.ci_multi_dict import CIMultiDictSchema
+from niltype import Nil, Nilable
 
 __all__ = ("HistoryResponseSchema", "HistoryResponseProps",)
 
@@ -15,7 +14,7 @@ class HistoryResponseProps(Props):
     def __init__(self, registry: Nilable[Mapping[str, Any]] = Nil) -> None:
         if registry is Nil:
             registry = {
-                "status": schema.int,
+                "status": schema.int.min(1),
                 "reason": schema.str,
                 "headers": CIMultiDictSchema(),
                 "body": schema.any
