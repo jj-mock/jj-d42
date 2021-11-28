@@ -16,12 +16,11 @@ pip3 install jj-district42
 
 ```python
 import asyncio
-
 import jj
 from httpx import AsyncClient
 from jj.mock import mocked
-from valera import validate_or_fail
 from jj_district42 import HistorySchema
+from valera import validate_or_fail
 
 
 async def main():
@@ -44,7 +43,8 @@ async def main():
                 }
             }
         ],
-        mock.history)
+        mock.history
+    )
 
 
 asyncio.run(main())
