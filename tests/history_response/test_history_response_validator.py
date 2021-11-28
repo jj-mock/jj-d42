@@ -5,7 +5,12 @@ from multidict import CIMultiDict
 from revolt import substitute
 from th import PathHolder
 from valera import validate
-from valera.errors import SchemaMismatchValidationError, TypeValidationError, ValueValidationError
+from valera.errors import (
+    ExtraKeyValidationError,
+    SchemaMismatchValidationError,
+    TypeValidationError,
+    ValueValidationError,
+)
 
 from jj_district42 import HistoryResponseSchema
 
@@ -152,4 +157,30 @@ def test_request_history_body_validation_error():
             SchemaMismatchValidationError(PathHolder()["body"],
                                           actual_body,
                                           (schema.str(expected_body),))
+        ]
+
+
+def test_response_history_validation():
+    with given:
+        req = {"status": 200, "reason": "OK"}
+        sch = HistoryResponseSchema()
+
+    with when:
+        result = validate(sch, req)
+
+    with then:
+        assert result.get_errors() == []
+
+
+def test_response_history_validation_error():
+    with given:
+        req = {"status": 200, "non_existing": "value"}
+        sch = HistoryResponseSchema()
+
+    with when:
+        result = validate(sch, req)
+
+    with then:
+        assert result.get_errors() == [
+            ExtraKeyValidationError(PathHolder(), req, "non_existing")
         ]
