@@ -5,6 +5,7 @@ from jj.mock import HistoryRequest
 from niltype import Nil, Nilable
 from th import PathHolder
 from valera import ValidationResult, Validator
+from valera.errors import TypeValidationError
 
 from ._history_request_schema import HistoryRequestSchema
 
@@ -20,6 +21,7 @@ class HistoryRequestValidator(Validator, extend=True):
             path = self._path_holder_factory()
 
         if not isinstance(value, HistoryRequest):
+            result.add_error(TypeValidationError(PathHolder(), value, HistoryRequest))
             return result
 
         for key in schema.props:
