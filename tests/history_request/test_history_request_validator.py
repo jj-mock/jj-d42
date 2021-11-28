@@ -27,7 +27,7 @@ def test_request_history_type_validation():
 def test_request_history_type_validation_error():
     with given:
         sch = HistoryRequestSchema()
-        value = {}
+        value = []
 
     with when:
         result = validate(sch, value)
@@ -62,7 +62,7 @@ def test_request_history_method_validation_error():
 
     with then:
         assert result.get_errors() == [
-            ValueValidationError(PathHolder(), actual_method, expected_method)
+            ValueValidationError(PathHolder()["method"], actual_method, expected_method)
         ]
 
 
@@ -90,7 +90,7 @@ def test_request_history_path_validation_error():
 
     with then:
         assert result.get_errors() == [
-            ValueValidationError(PathHolder(), actual_path, expected_path)
+            ValueValidationError(PathHolder()["path"], actual_path, expected_path)
         ]
 
 
@@ -119,7 +119,7 @@ def test_request_history_segments_validation_error():
 
     with then:
         assert result.get_errors() == [
-            ValueValidationError(PathHolder()["user_id"],
+            ValueValidationError(PathHolder()["segments"]["user_id"],
                                  actual_segments["user_id"],
                                  expected_segments["user_id"])
         ]
@@ -150,7 +150,7 @@ def test_request_history_params_validation_error():
 
     with then:
         assert result.get_errors() == [
-            ValueValidationError(PathHolder()["user_id"],
+            ValueValidationError(PathHolder()["params"]["user_id"],
                                  actual_params["user_id"],
                                  expected_params["user_id"])
         ]
@@ -181,7 +181,7 @@ def test_request_history_headers_validation_error():
 
     with then:
         assert result.get_errors() == [
-            ValueValidationError(PathHolder()["user_id"],
+            ValueValidationError(PathHolder()["headers"]["user_id"],
                                  actual_headers["user_id"],
                                  expected_headers["user_id"])
         ]
@@ -211,7 +211,7 @@ def test_request_history_body_validation_error():
 
     with then:
         assert result.get_errors() == [
-            SchemaMismatchValidationError(PathHolder(),
+            SchemaMismatchValidationError(PathHolder()["body"],
                                           actual_body,
                                           (schema.str(expected_body),))
         ]
