@@ -1,6 +1,6 @@
 from baby_steps import given, then, when
-from district42 import represent
 
+from district42 import represent
 from jj_district42 import HistoryResponseSchema
 
 
@@ -13,10 +13,13 @@ def test_history_response_representation():
 
     with then:
         assert res == "\n".join([
-            "schema.jj_history_response(<",
-            "    status=schema.int.min(1),",
-            "    reason=schema.str,",
-            "    headers=schema.ci_multi_dict,",
-            "    body=schema.any",
-            ">)",
+            "HistoryResponseSchema<schema.dict({",
+            "    'status': schema.int,",
+            "    'reason': schema.str,",
+            "    'headers': HeaderListSchema<schema.unordered(schema.list([",
+            "        schema.istr,",
+            "        schema.str",
+            "    ]))>,",
+            "    'body': schema.any",
+            "})>",
         ])

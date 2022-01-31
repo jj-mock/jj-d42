@@ -1,9 +1,10 @@
 from typing import Any, cast
 
-from district42 import GenericSchema
+from jj.mock import HistoryResponse
 from niltype import Nil
+
+from jj_district42.utils import response_to_dict
 from revolt import Substitutor
-from revolt.errors import SubstitutionError
 
 from ._history_response_schema import HistoryResponseSchema
 
@@ -13,18 +14,6 @@ __all__ = ("HistoryResponseSubstitutor",)
 class HistoryResponseSubstitutor(Substitutor, extend=True):
     def visit_jj_history_response(self, schema: HistoryResponseSchema, *,
                                   value: Any = Nil, **kwargs: Any) -> HistoryResponseSchema:
-        if not isinstance(value, dict):
-            raise SubstitutionError("Not implemented yet")
-
-        props = {}
-        for key in schema.props:
-            if key not in value:
-                continue
-            sch = cast(GenericSchema, schema.props.get(key))
-            props[key] = sch.__accept__(self, value=value.get(key), **kwargs)
-
-        for key in value:
-            if key not in schema.props:
-                raise SubstitutionError(f"Value {value!r} contains extra key {key!r}")
-
-        return schema.__class__(schema.props.update(**props))
+        if isinstance(value, HistoryResponse):
+            value = response_to_dict(value)
+        return cast(HistoryResponseSchema, self.visit_type_alias(schema, value=value, **kwargs))

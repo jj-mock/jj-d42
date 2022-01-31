@@ -1,8 +1,8 @@
 from typing import Any, Dict
 
-from jj.mock import HistoryRequest
+from jj.mock import HistoryRequest, HistoryResponse
 
-__all__ = ("request_to_dict",)
+__all__ = ("request_to_dict", "response_to_dict",)
 
 
 def request_to_dict(request: HistoryRequest) -> Dict[str, Any]:
@@ -15,4 +15,14 @@ def request_to_dict(request: HistoryRequest) -> Dict[str, Any]:
         "params": params,
         "headers": headers,
         "body": request.body,
+    }
+
+
+def response_to_dict(response: HistoryResponse) -> Dict[str, Any]:
+    headers = [[key, val] for key, val in response.headers.items()]
+    return {
+        "status": response.status,
+        "reason": response.reason,
+        "headers": headers,
+        "body": response.body,
     }
