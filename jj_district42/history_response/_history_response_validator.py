@@ -15,6 +15,11 @@ class HistoryResponseValidator(Validator, extend=True):
     def visit_jj_history_response(self, schema: HistoryResponseSchema, *,
                                   value: Any = Nil, path: Nilable[PathHolder] = Nil,
                                   **kwargs: Any) -> ValidationResult:
-        if isinstance(value, HistoryResponse):
-            value = value.to_dict()
-        return self.visit_type_alias(schema, value=value, path=path, **kwargs)
+        result = self._validation_result_factory()
+        if path is Nil:
+            path = self._path_holder_factory()
+
+        if error := self._validate_type(path, value, HistoryResponse):
+            return result.add_error(error)
+
+        return self.visit_type_alias(schema, value=value.to_dict(), path=path, **kwargs)

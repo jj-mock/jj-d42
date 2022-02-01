@@ -12,7 +12,7 @@ def make_history_request(*,
                          segments: Optional[Dict[str, str]] = None,
                          params: Optional[MultiDict] = None,
                          headers: Optional[CIMultiDict] = None,
-                         body: bytes = b""):
+                         body: bytes = b"") -> HistoryRequest:
     if segments is None:
         segments = {}
     if params is None:

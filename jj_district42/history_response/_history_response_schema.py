@@ -6,19 +6,21 @@ from district42 import schema
 from district42.types import DictSchema, GenericTypeAliasSchema, TypeAliasProps
 from jj_district42.types.header_list import HeaderListSchema
 
-__all__ = ("HistoryResponseSchema", "HistoryResponseProps",)
+__all__ = ("HistoryResponseSchema", "HistoryResponseProps", "ResponseSchema",)
+
+
+ResponseSchema = schema.dict({
+    "status": schema.int,
+    "reason": schema.str,
+    "headers": HeaderListSchema(),
+    "body": schema.any
+})
 
 
 class HistoryResponseProps(TypeAliasProps):
     @property
     def type(self) -> DictSchema:
-        type_ = self.get("type", schema.dict({
-            "status": schema.int,
-            "reason": schema.str,
-            "headers": HeaderListSchema(),
-            "body": schema.any
-        }))
-        return cast(DictSchema, type_)
+        return cast(DictSchema, self.get("type", ResponseSchema))
 
 
 class HistoryResponseSchema(GenericTypeAliasSchema[HistoryResponseProps]):

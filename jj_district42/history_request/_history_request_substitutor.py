@@ -1,13 +1,15 @@
 from typing import Any, cast
 
 from jj.mock import HistoryRequest
-from niltype import Nil
+from niltype import Nil, Nilable
+from th import PathHolder
 
-from revolt import Substitutor
+from revolt import Substitutor, SubstitutorValidator
+from valera import ValidationResult
 
 from ._history_request_schema import HistoryRequestSchema
 
-__all__ = ("HistoryRequestSubstitutor",)
+__all__ = ("HistoryRequestSubstitutor", "HistoryRequestSubstitutorValidator",)
 
 
 class HistoryRequestSubstitutor(Substitutor, extend=True):
@@ -16,3 +18,12 @@ class HistoryRequestSubstitutor(Substitutor, extend=True):
         if isinstance(value, HistoryRequest):
             value = value.to_dict()
         return cast(HistoryRequestSchema, self.visit_type_alias(schema, value=value, **kwargs))
+
+
+class HistoryRequestSubstitutorValidator(SubstitutorValidator, extend=True):
+    def visit_jj_history_request(self, schema: HistoryRequestSchema, *,
+                                 value: Any = Nil, path: Nilable[PathHolder] = Nil,
+                                 **kwargs: Any) -> ValidationResult:
+        if isinstance(value, HistoryRequest):
+            value = value.to_dict()
+        return self.visit_type_alias(schema, value=value, path=path, **kwargs)

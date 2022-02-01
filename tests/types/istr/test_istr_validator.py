@@ -64,7 +64,7 @@ def test_istr_value_validation_error():
         ]
 
 
-def test_istr_nested():
+def test_istr_nested_validation():
     with given:
         value = "banana"
         sch = schema.list([IStrSchema()(value)])

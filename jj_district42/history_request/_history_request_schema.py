@@ -7,21 +7,23 @@ from district42.types import DictSchema, GenericTypeAliasSchema, TypeAliasProps
 from jj_district42.types.header_list import HeaderListSchema
 from jj_district42.types.param_list import ParamListSchema
 
-__all__ = ("HistoryRequestSchema", "HistoryRequestProps",)
+__all__ = ("HistoryRequestSchema", "HistoryRequestProps", "RequestSchema",)
+
+
+RequestSchema = schema.dict({
+    "method": schema.str.len(1, ...),
+    "path": schema.str,
+    "segments": schema.dict,
+    "params": ParamListSchema(),
+    "headers": HeaderListSchema(),
+    "body": schema.any,
+})
 
 
 class HistoryRequestProps(TypeAliasProps):
     @property
     def type(self) -> DictSchema:
-        type_ = self.get("type", schema.dict({
-            "method": schema.str.len(1, ...),
-            "path": schema.str,
-            "segments": schema.dict,
-            "params": ParamListSchema(),
-            "headers": HeaderListSchema(),
-            "body": schema.any
-        }))
-        return cast(DictSchema, type_)
+        return cast(DictSchema, self.get("type", RequestSchema))
 
 
 class HistoryRequestSchema(GenericTypeAliasSchema[HistoryRequestProps]):
