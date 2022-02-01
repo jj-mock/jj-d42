@@ -5,8 +5,8 @@ from ._version import version
 from .history_request import HistoryRequestSchema
 from .history_response import HistoryResponseSchema
 
-register_type("jj_history_request", HistoryRequestSchema)
-register_type("jj_history_response", HistoryResponseSchema)
+schema_history_request = register_type("jj_history_request", HistoryRequestSchema)
+schema_history_response = register_type("jj_history_response", HistoryResponseSchema)
 
 HistoryItemSchema = schema.dict({
     "request": HistoryRequestSchema(),
@@ -18,4 +18,5 @@ HistorySchema = schema.list(HistoryItemSchema)
 
 __version__ = version
 __all__ = ("HistorySchema", "HistoryItemSchema",
+           "schema_history_request", "schema_history_response",
            "HistoryRequestSchema", "HistoryResponseSchema",)

@@ -10,7 +10,7 @@ def make_history_response(*,
                           status: int = 200,
                           reason: str = "OK",
                           headers: Optional[CIMultiDict] = None,
-                          body: bytes = b""):
+                          body: bytes = b"") -> HistoryResponse:
     if headers is None:
         headers = CIMultiDict()
     return HistoryResponse(

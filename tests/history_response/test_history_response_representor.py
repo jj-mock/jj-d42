@@ -13,10 +13,13 @@ def test_history_response_representation():
 
     with then:
         assert res == "\n".join([
-            "schema.jj_history_response(<",
-            "    status=schema.int.min(1),",
-            "    reason=schema.str,",
-            "    headers=schema.ci_multi_dict,",
-            "    body=schema.any",
-            ">)",
+            "HistoryResponseSchema<schema.dict({",
+            "    'status': schema.int,",
+            "    'reason': schema.str,",
+            "    'headers': HeaderListSchema<schema.unordered(schema.list([",
+            "        schema.istr,",
+            "        schema.str",
+            "    ]))>,",
+            "    'body': schema.any",
+            "})>",
         ])

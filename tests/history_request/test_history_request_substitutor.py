@@ -1,17 +1,17 @@
+from _pytest.python_api import raises
 from baby_steps import given, then, when
 from district42 import schema
-from district42_exp_types.ci_multi_dict import schema_ci_multi_dict
-from district42_exp_types.multi_dict import schema_multi_dict
-from pytest import raises
+from multidict import CIMultiDict, MultiDict
 from revolt import substitute
 from revolt.errors import SubstitutionError
 
 from jj_district42 import HistoryRequestSchema
+from jj_district42.history_request import RequestSchema
 
 from ._utils import make_history_request
 
 
-def test_history_request_substitution():
+def test_history_request_empty_dict_substitution():
     with given:
         sch = HistoryRequestSchema()
 
@@ -19,134 +19,97 @@ def test_history_request_substitution():
         res = substitute(sch, {})
 
     with then:
+        assert isinstance(res, HistoryRequestSchema)
         assert id(res) != id(sch)
 
 
-def test_history_request_method_substitution():
+def test_history_request_incorrect_type_substitution_error():
     with given:
         sch = HistoryRequestSchema()
-        method = "GET"
+
+    with when, raises(Exception) as exception:
+        substitute(sch, set())
+
+    with then:
+        assert exception.type is SubstitutionError
+
+
+def test_history_request_dict_substitution():
+    with given:
+        req = {
+            "method": "GET",
+            "path": "/users",
+            "segments": {},
+            "params": {"user_id": "1"},
+            "headers": {"Authorization": "banana"},
+            "body": b"[]",
+        }
+        sch = HistoryRequestSchema()
+
+    with when:
+        res = substitute(sch, req)
+
+    with then:
+        assert res.props.type == substitute(RequestSchema, req)
+        assert id(res) != id(sch)
+
+
+def test_history_request_req_substitution():
+    with given:
+        req = {
+            "method": "GET",
+            "path": "/users",
+            "segments": {},
+            "params": {"user_id": "1"},
+            "headers": {"Authorization": "banana"},
+            "body": b"[]",
+        }
+        history_request = make_history_request(
+            method=req["method"],
+            path=req["path"],
+            segments=req["segments"],
+            params=MultiDict(req["params"]),
+            headers=CIMultiDict(req["headers"]),
+            body=req["body"],
+        )
+        sch = HistoryRequestSchema()
+
+    with when:
+        res = substitute(sch, history_request)
+
+    with then:
+        assert res.props.type == substitute(RequestSchema, req)
+        assert id(res) != id(sch)
+
+
+def test_history_request_inner_dict_substitution():
+    with given:
+        sch = schema.dict({
+            "request": HistoryRequestSchema()
+        })
 
     with when:
         res = substitute(sch, {
-            "method": method
+            "request": {}
         })
 
     with then:
-        assert res.props.method == schema.str(method).len(1, ...)
-        assert res != sch
+        assert isinstance(res["request"], HistoryRequestSchema)
+        assert id(res) != id(sch)
 
 
-def test_history_request_path_substitution():
+def test_history_request_inner_req_substitution():
     with given:
-        sch = HistoryRequestSchema()
-        path = "/users"
-
-    with when:
-        res = substitute(sch, {
-            "path": path
+        sch = schema.dict({
+            "request": HistoryRequestSchema()
         })
-
-    with then:
-        assert res.props.path == schema.str(path)
-        assert res != sch
-
-
-def test_history_request_segments_substitution():
-    with given:
-        sch = HistoryRequestSchema()
-        segments = {"user_id": "1"}
-
-    with when:
-        res = substitute(sch, {
-            "segments": segments
-        })
-
-    with then:
-        assert res.props.segments == schema.dict({
-            "user_id": schema.str("1")
-        })
-        assert res != sch
-
-
-def test_history_request_params_substitution():
-    with given:
-        sch = HistoryRequestSchema()
-        params = {"id": "1"}
-
-    with when:
-        res = substitute(sch, {
-            "params": params
-        })
-
-    with then:
-        assert res.props.params == schema_multi_dict({
-            "id": schema.str("1")
-        })
-        assert res != sch
-
-
-def test_history_request_headers_substitution():
-    with given:
-        sch = HistoryRequestSchema()
-        headers = {"authorization": "banana"}
-
-    with when:
-        res = substitute(sch, {
-            "headers": headers,
-        })
-
-    with then:
-        assert res.props.headers == schema_ci_multi_dict({
-            "authorization": schema.str("banana")
-        })
-        assert res != sch
-
-
-def test_history_request_body_substitution():
-    with given:
-        sch = HistoryRequestSchema()
-        body = "<body>"
-
-    with when:
-        res = substitute(sch, {
-            "body": body
-        })
-
-    with then:
-        assert res.props.body == schema.any(schema.str(body))
-        assert res != sch
-
-
-def test_history_request_request_substitution_error():
-    with given:
-        sch = HistoryRequestSchema()
         req = make_history_request()
 
-    with when, raises(Exception) as exception:
-        sch % req
+    with when:
+        res = substitute(sch, {
+            "request": req
+        })
 
     with then:
-        assert exception.type is SubstitutionError
-
-
-def test_history_request_non_existing_key_substitution_error():
-    with given:
-        sch = HistoryRequestSchema()
-
-    with when, raises(Exception) as exception:
-        sch % {"non_existing": "value"}
-
-    with then:
-        assert exception.type is SubstitutionError
-
-
-def test_history_request_invalid_value_substitution_error():
-    with given:
-        sch = HistoryRequestSchema()
-
-    with when, raises(Exception) as exception:
-        sch % {"method": 1}
-
-    with then:
-        assert exception.type is SubstitutionError
+        assert isinstance(res["request"], HistoryRequestSchema)
+        assert id(res) != id(sch)

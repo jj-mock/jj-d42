@@ -13,12 +13,18 @@ def test_history_request_representation():
 
     with then:
         assert res == "\n".join([
-            "schema.jj_history_request(<",
-            "    method=schema.str.len(1, ...),",
-            "    path=schema.str,",
-            "    segments=schema.dict,",
-            "    params=schema.multi_dict,",
-            "    headers=schema.ci_multi_dict,",
-            "    body=schema.any",
-            ">)",
+            "HistoryRequestSchema<schema.dict({",
+            "    'method': schema.str.len(1, ...),",
+            "    'path': schema.str,",
+            "    'segments': schema.dict,",
+            "    'params': ParamListSchema<schema.unordered(schema.list([",
+            "        schema.str,",
+            "        schema.str",
+            "    ]))>,",
+            "    'headers': HeaderListSchema<schema.unordered(schema.list([",
+            "        schema.istr,",
+            "        schema.str",
+            "    ]))>,",
+            "    'body': schema.any",
+            "})>",
         ])

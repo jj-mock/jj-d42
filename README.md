@@ -22,30 +22,38 @@ from jj.mock import mocked
 from jj_district42 import HistorySchema
 from valera import validate_or_fail
 
-
 async def main():
     matcher = jj.match("GET", "/users")
     response = jj.Response(status=200, json=[])
 
     async with mocked(matcher, response) as mock:
         async with AsyncClient() as client:
-            await client.get("http://localhost:8080/users")
+            params = {"user_id": 1}
+            await client.get("http://localhost:8080/users", params=params)
 
     assert validate_or_fail(
         HistorySchema % [
             {
                 "request": {
                     "method": "GET",
-                    "path": "/users"
+                    "path": "/users",
+                    # equals (exact match)
+                    "params": {"user_id": "1"},
                 },
                 "response": {
-                    "status": 200
+                    "status": 200,
+                    # contains
+                    "headers": [
+                        ..., 
+                        ["Content-Type", "application/json"],
+                        ...
+                    ],
+                    "body": b"[]",
                 }
             }
         ],
         mock.history
     )
-
 
 asyncio.run(main())
 ```
