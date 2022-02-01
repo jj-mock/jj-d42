@@ -1,14 +1,13 @@
 from typing import Any, cast
 
-from district42_exp_types.unordered import unordered_schema
-from niltype import Nil, Nilable
-from th import PathHolder
-
 from district42 import SchemaVisitor
 from district42 import SchemaVisitorReturnType as ReturnType
 from district42 import schema as sch
 from district42.types import DictSchema, GenericTypeAliasSchema, TypeAliasProps
+from district42_exp_types.unordered import unordered_schema
+from niltype import Nil, Nilable
 from revolt import Substitutor
+from th import PathHolder
 from valera import ValidationResult, Validator
 
 __all__ = ("ParamListSchema", "ParamListProps",

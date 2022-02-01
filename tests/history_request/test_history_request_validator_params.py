@@ -1,13 +1,13 @@
 from baby_steps import given, then, when
+from district42 import schema
 from district42_exp_types.unordered import UnorderedContainsValidationError
 from multidict import MultiDict
-from th import PathHolder
-
-from district42 import schema
-from jj_district42 import HistoryRequestSchema
 from revolt import substitute
+from th import PathHolder
 from valera import validate
 from valera.errors import ExtraElementValidationError
+
+from jj_district42 import HistoryRequestSchema
 
 from ._utils import make_history_request
 

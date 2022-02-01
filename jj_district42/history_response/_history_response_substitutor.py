@@ -2,9 +2,8 @@ from typing import Any, cast
 
 from jj.mock import HistoryResponse
 from niltype import Nil, Nilable
-from th import PathHolder
-
 from revolt import Substitutor, SubstitutorValidator
+from th import PathHolder
 from valera import ValidationResult
 
 from ._history_response_schema import HistoryResponseSchema

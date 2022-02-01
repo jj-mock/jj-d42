@@ -1,9 +1,9 @@
 from baby_steps import given, then, when
 from th import PathHolder
-
-from jj_district42.types.param_list import ParamListSchema
 from valera import validate
 from valera.errors import MissingElementValidationError, TypeValidationError
+
+from jj_district42.types.param_list import ParamListSchema
 
 
 def test_param_list_empty_list_validation():

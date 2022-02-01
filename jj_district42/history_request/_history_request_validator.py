@@ -3,7 +3,6 @@ from typing import Any
 from jj.mock import HistoryRequest
 from niltype import Nil, Nilable
 from th import PathHolder
-
 from valera import ValidationResult, Validator
 
 from ._history_request_schema import HistoryRequestSchema

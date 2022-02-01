@@ -1,16 +1,16 @@
 from typing import Any, cast
 
-from district42_exp_types.unordered import unordered_schema
-from niltype import Nil, Nilable
-from th import PathHolder
-
 from district42 import SchemaVisitor
 from district42 import SchemaVisitorReturnType as ReturnType
 from district42 import schema as sch
 from district42.types import DictSchema, GenericTypeAliasSchema, TypeAliasProps
-from jj_district42.types.istr import IStrSchema
+from district42_exp_types.unordered import unordered_schema
+from niltype import Nil, Nilable
 from revolt import Substitutor
+from th import PathHolder
 from valera import ValidationResult, Validator
+
+from jj_district42.types.istr import IStrSchema
 
 __all__ = ("HeaderListSchema", "HeaderListProps",
            "HeaderListSubstitutor", "HeaderListValidator",)

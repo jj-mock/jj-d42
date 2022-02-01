@@ -1,9 +1,9 @@
 from uuid import uuid4
 
 from baby_steps import given, then, when
+from district42.errors import DeclarationError
 from pytest import raises
 
-from district42.errors import DeclarationError
 from jj_district42.types.istr import IStrSchema
 
 

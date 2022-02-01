@@ -1,17 +1,16 @@
 import random
 from typing import Any, cast
 
-from niltype import Nil, Nilable
-from th import PathHolder
-
 from blahblah import Generator
 from district42 import Props, SchemaVisitor
 from district42 import SchemaVisitorReturnType as ReturnType
 from district42.errors import make_already_declared_error, make_invalid_type_error
 from district42.representor import Representor
 from district42.types import Schema
+from niltype import Nil, Nilable
 from revolt import Substitutor
 from revolt.errors import make_substitution_error
+from th import PathHolder
 from valera import ValidationResult, Validator
 from valera.errors import ValueValidationError
 

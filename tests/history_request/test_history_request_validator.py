@@ -1,12 +1,12 @@
 from baby_steps import given, then, when
-from jj.mock import HistoryRequest
-from th import PathHolder
-
 from district42 import schema
-from jj_district42 import HistoryRequestSchema
+from jj.mock import HistoryRequest
 from revolt import substitute
+from th import PathHolder
 from valera import validate
 from valera.errors import SchemaMismatchValidationError, TypeValidationError, ValueValidationError
+
+from jj_district42 import HistoryRequestSchema
 
 from ._utils import make_history_request
 

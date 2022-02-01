@@ -3,10 +3,10 @@ from typing import Callable
 import pytest
 from baby_steps import given, then, when
 from pytest import raises
-
-from jj_district42.types.istr import IStrSchema
 from revolt import substitute
 from revolt.errors import SubstitutionError
+
+from jj_district42.types.istr import IStrSchema
 
 
 def test_istr_substitution():

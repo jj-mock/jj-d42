@@ -1,12 +1,12 @@
 from _pytest.python_api import raises
 from baby_steps import given, then, when
-from district42_exp_types.unordered import unordered_schema
-
 from district42 import schema
-from jj_district42.types.header_list import HeaderListSchema
-from jj_district42.types.istr import IStrSchema
+from district42_exp_types.unordered import unordered_schema
 from revolt import substitute
 from revolt.errors import SubstitutionError
+
+from jj_district42.types.header_list import HeaderListSchema
+from jj_district42.types.istr import IStrSchema
 
 
 def test_header_list_empty_list_substitution():

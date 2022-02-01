@@ -4,6 +4,7 @@ from district42 import SchemaVisitor
 from district42 import SchemaVisitorReturnType as ReturnType
 from district42 import schema
 from district42.types import DictSchema, GenericTypeAliasSchema, TypeAliasProps
+
 from jj_district42.types.header_list import HeaderListSchema
 from jj_district42.types.param_list import ParamListSchema
 

@@ -1,6 +1,5 @@
-from district42_exp_types.uuid_str import UUIDStrSchema
-
 from district42 import register_type, schema
+from district42_exp_types.uuid_str import UUIDStrSchema
 
 from ._version import version
 from .history_request import HistoryRequestSchema

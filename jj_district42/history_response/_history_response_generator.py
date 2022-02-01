@@ -1,8 +1,7 @@
 from typing import Any
 
-from jj.mock import HistoryResponse
-
 from blahblah import Generator
+from jj.mock import HistoryResponse
 
 from ._history_response_schema import HistoryResponseSchema
 
