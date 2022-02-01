@@ -14,7 +14,7 @@ def test_param_list_representation():
     with then:
         assert res == "\n".join([
             "ParamListSchema<schema.unordered(schema.list([",
-            "        schema.str,",
-            "        schema.str",
-            "    ]))>",
+            "    schema.str,",
+            "    schema.str",
+            "]))>",
         ])

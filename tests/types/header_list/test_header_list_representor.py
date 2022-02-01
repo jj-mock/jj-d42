@@ -14,7 +14,7 @@ def test_header_list_representation():
     with then:
         assert res == "\n".join([
             "HeaderListSchema<schema.unordered(schema.list([",
-            "        schema.istr,",
-            "        schema.str",
-            "    ]))>",
+            "    schema.istr,",
+            "    schema.str",
+            "]))>",
         ])
