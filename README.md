@@ -15,45 +15,40 @@ pip3 install jj-district42
 ## Usage
 
 ```python
-import asyncio
 import jj
-from httpx import AsyncClient
+import httpx
 from jj.mock import mocked
 from jj_district42 import HistorySchema
 from valera import validate_or_fail
 
-async def main():
-    matcher = jj.match("GET", "/users")
-    response = jj.Response(status=200, json=[])
 
-    async with mocked(matcher, response) as mock:
-        async with AsyncClient() as client:
-            params = {"user_id": 1}
-            await client.get("http://localhost:8080/users", params=params)
+matcher = jj.match("GET", "/users")
+response = jj.Response(status=200, json=[])
 
-    assert validate_or_fail(
-        HistorySchema % [
-            {
-                "request": {
-                    "method": "GET",
-                    "path": "/users",
-                    # equals (exact match)
-                    "params": {"user_id": "1"},
-                },
-                "response": {
-                    "status": 200,
-                    # contains
-                    "headers": [
-                        ..., 
-                        ["Content-Type", "application/json"],
-                        ...
-                    ],
-                    "body": b"[]",
-                }
+with mocked(matcher, response) as mock:
+    resp = httpx.get("http://localhost:8080/users", params={"user_id": 1})
+
+assert validate_or_fail(
+    HistorySchema % [
+        {
+            "request": {
+                "method": "GET",
+                "path": "/users",
+                # equals (exact match)
+                "params": {"user_id": "1"},
+            },
+            "response": {
+                "status": 200,
+                # contains
+                "headers": [
+                    ..., 
+                    ["Content-Type", "application/json"],
+                    ...
+                ],
+                "body": b"[]",
             }
-        ],
-        mock.history
-    )
-
-asyncio.run(main())
+        }
+    ],
+    mock.history
+)
 ```
