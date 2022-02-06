@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 from jj.mock import HistoryRequest
 from multidict import CIMultiDict, CIMultiDictProxy, MultiDict, MultiDictProxy
@@ -12,7 +12,8 @@ def make_history_request(*,
                          segments: Optional[Dict[str, str]] = None,
                          params: Optional[MultiDict] = None,
                          headers: Optional[CIMultiDict] = None,
-                         body: bytes = b"") -> HistoryRequest:
+                         body: Any = b"",
+                         raw: bytes = b"") -> HistoryRequest:
     if segments is None:
         segments = {}
     if params is None:
@@ -27,4 +28,5 @@ def make_history_request(*,
         params=MultiDictProxy(params),
         headers=CIMultiDictProxy(headers),
         body=body,
+        raw=raw,
     )

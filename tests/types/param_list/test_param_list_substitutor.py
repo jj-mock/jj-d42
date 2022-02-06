@@ -1,7 +1,7 @@
-from _pytest.python_api import raises
 from baby_steps import given, then, when
 from district42 import schema
 from district42_exp_types.unordered import unordered_schema
+from pytest import raises
 from revolt import substitute
 from revolt.errors import SubstitutionError
 

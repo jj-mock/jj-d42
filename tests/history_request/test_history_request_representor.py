@@ -25,6 +25,7 @@ def test_history_request_representation():
             "        schema.istr,",
             "        schema.str",
             "    ]))>,",
-            "    'body': schema.any",
+            "    'body': schema.any,",
+            "    'raw': schema.bytes",
             "})>",
         ])

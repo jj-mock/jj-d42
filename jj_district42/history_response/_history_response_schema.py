@@ -14,7 +14,8 @@ ResponseSchema = schema.dict({
     "status": schema.int,
     "reason": schema.str,
     "headers": HeaderListSchema(),
-    "body": schema.any
+    "body": schema.any,
+    "raw": schema.bytes,
 })
 
 

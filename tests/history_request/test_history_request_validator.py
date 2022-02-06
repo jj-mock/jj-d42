@@ -1,5 +1,5 @@
 from baby_steps import given, then, when
-from district42 import schema
+from district42 import from_native, schema
 from jj.mock import HistoryRequest
 from revolt import substitute
 from th import PathHolder
@@ -125,7 +125,7 @@ def test_request_history_segments_validation_error():
         ]
 
 
-def test_request_history_body_validation():
+def test_request_history_body_binary_validation():
     with given:
         body = b""
         sch = substitute(HistoryRequestSchema(), {"body": body})
@@ -138,7 +138,7 @@ def test_request_history_body_validation():
         assert result.get_errors() == []
 
 
-def test_request_history_body_validation_error():
+def test_request_history_body_binary_validation_error():
     with given:
         expected_body, actual_body = b"<expected>", b"<actual>"
         sch = substitute(HistoryRequestSchema(), {"body": expected_body})
@@ -152,6 +152,65 @@ def test_request_history_body_validation_error():
             SchemaMismatchValidationError(PathHolder()["body"],
                                           actual_body,
                                           (schema.bytes(expected_body),))
+        ]
+
+
+def test_request_history_body_validation():
+    with given:
+        body = [{"id": 1, "name": "Bob"}]
+        sch = substitute(HistoryRequestSchema(), {"body": body})
+        req = make_history_request(body=body)
+
+    with when:
+        result = validate(sch, req)
+
+    with then:
+        assert result.get_errors() == []
+
+
+def test_request_history_body_validation_error():
+    with given:
+        expected_body = {"id": 1, "name": "Bob"}
+        actual_body = {"id": 1, "name": "Alice"}
+        sch = substitute(HistoryRequestSchema(), {"body": expected_body})
+        req = make_history_request(body=actual_body)
+
+    with when:
+        result = validate(sch, req)
+
+    with then:
+        assert result.get_errors() == [
+            SchemaMismatchValidationError(PathHolder()["body"],
+                                          actual_body,
+                                          (from_native(expected_body),))
+        ]
+
+
+def test_request_history_raw_validation():
+    with given:
+        raw = b""
+        sch = substitute(HistoryRequestSchema(), {"raw": raw})
+        req = make_history_request(raw=raw)
+
+    with when:
+        result = validate(sch, req)
+
+    with then:
+        assert result.get_errors() == []
+
+
+def test_request_history_raw_validation_error():
+    with given:
+        expected_raw, actual_raw = b"<expected>", b"<actual>"
+        sch = substitute(HistoryRequestSchema(), {"raw": expected_raw})
+        req = make_history_request(raw=actual_raw)
+
+    with when:
+        result = validate(sch, req)
+
+    with then:
+        assert result.get_errors() == [
+            ValueValidationError(PathHolder()["raw"], actual_raw, expected_raw)
         ]
 
 

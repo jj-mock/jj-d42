@@ -20,6 +20,7 @@ def test_history_response_representation():
             "        schema.istr,",
             "        schema.str",
             "    ]))>,",
-            "    'body': schema.any",
+            "    'body': schema.any,",
+            "    'raw': schema.bytes",
             "})>",
         ])

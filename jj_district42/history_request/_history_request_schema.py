@@ -18,6 +18,7 @@ RequestSchema = schema.dict({
     "params": ParamListSchema(),
     "headers": HeaderListSchema(),
     "body": schema.any,
+    "raw": schema.bytes,
 })
 
 

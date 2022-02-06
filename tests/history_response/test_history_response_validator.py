@@ -1,5 +1,5 @@
 from baby_steps import given, then, when
-from district42 import schema
+from district42 import from_native, schema
 from jj.mock import HistoryResponse
 from revolt import substitute
 from th import PathHolder
@@ -94,7 +94,7 @@ def test_response_history_reason_validation_error():
         ]
 
 
-def test_response_history_body_validation():
+def test_response_history_body_binary_validation():
     with given:
         body = b"200 OK"
         sch = substitute(HistoryResponseSchema(), {"body": body})
@@ -107,7 +107,7 @@ def test_response_history_body_validation():
         assert result.get_errors() == []
 
 
-def test_response_history_body_validation_error():
+def test_response_history_body_binary_validation_error():
     with given:
         expected_body, actual_body = b"200 OK", b"404 NOT FOUND"
         sch = substitute(HistoryResponseSchema(), {"body": expected_body})
@@ -121,6 +121,65 @@ def test_response_history_body_validation_error():
             SchemaMismatchValidationError(PathHolder()["body"],
                                           actual_body,
                                           (schema.bytes(expected_body),))
+        ]
+
+
+def test_response_history_body_validation():
+    with given:
+        body = [{"id": 1, "name": "Bob"}]
+        sch = substitute(HistoryResponseSchema(), {"body": body})
+        resp = make_history_response(body=body)
+
+    with when:
+        result = validate(sch, resp)
+
+    with then:
+        assert result.get_errors() == []
+
+
+def test_response_history_body_validation_error():
+    with given:
+        expected_body = {"id": 1, "name": "Bob"}
+        actual_body = {"id": 1, "name": "Alice"}
+        sch = substitute(HistoryResponseSchema(), {"body": expected_body})
+        resp = make_history_response(body=actual_body)
+
+    with when:
+        result = validate(sch, resp)
+
+    with then:
+        assert result.get_errors() == [
+            SchemaMismatchValidationError(PathHolder()["body"],
+                                          actual_body,
+                                          (from_native(expected_body),))
+        ]
+
+
+def test_response_history_raw_validation():
+    with given:
+        raw = b"200 OK"
+        sch = substitute(HistoryResponseSchema(), {"raw": raw})
+        resp = make_history_response(raw=raw)
+
+    with when:
+        result = validate(sch, resp)
+
+    with then:
+        assert result.get_errors() == []
+
+
+def test_response_history_raw_validation_error():
+    with given:
+        expected_raw, actual_raw = b"200 OK", b"404 NOT FOUND"
+        sch = substitute(HistoryResponseSchema(), {"raw": expected_raw})
+        resp = make_history_response(raw=actual_raw)
+
+    with when:
+        result = validate(sch, resp)
+
+    with then:
+        assert result.get_errors() == [
+            ValueValidationError(PathHolder()["raw"], actual_raw, expected_raw)
         ]
 
 

@@ -1,7 +1,7 @@
-from _pytest.python_api import raises
 from baby_steps import given, then, when
 from district42 import schema
 from multidict import CIMultiDict, MultiDict
+from pytest import raises
 from revolt import substitute
 from revolt.errors import SubstitutionError
 
@@ -42,7 +42,8 @@ def test_history_request_dict_substitution():
             "segments": {},
             "params": {"user_id": "1"},
             "headers": {"Authorization": "banana"},
-            "body": b"[]",
+            "body": [],
+            "raw": b"[]",
         }
         sch = HistoryRequestSchema()
 
@@ -62,7 +63,8 @@ def test_history_request_req_substitution():
             "segments": {},
             "params": {"user_id": "1"},
             "headers": {"Authorization": "banana"},
-            "body": b"[]",
+            "body": [],
+            "raw": b"[]",
         }
         history_request = make_history_request(
             method=req["method"],
@@ -71,6 +73,7 @@ def test_history_request_req_substitution():
             params=MultiDict(req["params"]),
             headers=CIMultiDict(req["headers"]),
             body=req["body"],
+            raw=req["raw"],
         )
         sch = HistoryRequestSchema()
 
