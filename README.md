@@ -34,21 +34,12 @@ assert validate_or_fail(
             "request": {
                 "method": "GET",
                 "path": "/users",
-                # equals (exact match)
                 "params": {"user_id": "1"},
-            },
-            "response": {
-                "status": 200,
-                # contains
-                "headers": [
-                    ..., 
-                    ["Content-Type", "application/json"],
-                    ...
-                ],
-                "body": b"[]",
             }
         }
     ],
     mock.history
 )
 ```
+
+More examples are available [here](https://github.com/nikitanovosibirsk/jj-district42/tree/master/examples)
