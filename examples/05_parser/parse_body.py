@@ -6,7 +6,7 @@ def parse_body(item: HistoryItem) -> HistoryItem:
     content_type = item["request"].headers.get("Content-Type", "")
     if content_type.lower().startswith("application/xml"):
         try:
-            body = xmltodict.parse(item["request"].raw)
+            body = xmltodict.parse(item["request"].body)
         except:
             pass
         else:
@@ -14,6 +14,4 @@ def parse_body(item: HistoryItem) -> HistoryItem:
                 **item["request"].to_dict(),
                 "body": body
             })
-            return item
-
     return default_history_adapter(item)
