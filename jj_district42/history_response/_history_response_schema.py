@@ -31,3 +31,8 @@ class HistoryResponseSchema(GenericTypeAliasSchema[HistoryResponseProps]):
             return cast(ReturnType, visitor.visit_jj_history_response(self, **kwargs))
         except AttributeError:
             return visitor.visit_type_alias(self, **kwargs)
+
+    def __add__(self, /, other: DictSchema) -> "HistoryResponseSchema":
+        assert isinstance(other, DictSchema)
+        merged = self.props.type + other
+        return self.__class__(self.props.update(type=merged))
