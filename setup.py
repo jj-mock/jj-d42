@@ -13,7 +13,7 @@ def find_dev_required():
 
 setup(
     name="jj-district42",
-    version="0.2.1",
+    version="1.0.0",
     description="",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
