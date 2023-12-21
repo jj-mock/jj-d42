@@ -20,7 +20,7 @@ setup(
     author="Nikita Tsvetkov",
     author_email="nikitanovosibirsk@yandex.com",
     python_requires=">=3.8",
-    url="https://github.com/nikitanovosibirsk/jj-district42",
+    url="https://github.com/jj-mock/jj-district42",
     license="Apache-2.0",
     packages=find_packages(exclude=("tests",)),
     package_data={"jj_district42": ["py.typed"]},
@@ -31,6 +31,8 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Typing :: Typed",
     ],
 )
