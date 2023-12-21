@@ -1,6 +1,6 @@
 # jj-district42
 
-[![Codecov](https://img.shields.io/codecov/c/github/nikitanovosibirsk/jj-district42/master.svg?style=flat-square)](https://codecov.io/gh/nikitanovosibirsk/jj-district42)
+[![Codecov](https://img.shields.io/codecov/c/github/jj-mock/jj-district42/master.svg?style=flat-square)](https://codecov.io/gh/jj-mock/jj-district42)
 [![PyPI](https://img.shields.io/pypi/v/jj-district42.svg?style=flat-square)](https://pypi.python.org/pypi/jj-district42/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/jj-district42?style=flat-square)](https://pypi.python.org/pypi/jj-district42/)
 [![Python Version](https://img.shields.io/pypi/pyversions/jj-district42.svg?style=flat-square)](https://pypi.python.org/pypi/jj-district42/)
@@ -42,4 +42,4 @@ assert validate_or_fail(
 )
 ```
 
-More examples are available [here](https://github.com/nikitanovosibirsk/jj-district42/tree/master/examples)
+More examples are available [here](https://github.com/jj-mock/jj-district42/tree/master/examples)

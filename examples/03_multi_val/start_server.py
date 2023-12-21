@@ -1,4 +1,4 @@
 import jj
 from jj.mock import Mock
 
-jj.serve(Mock())
+jj.serve(Mock(), host="localhost")
