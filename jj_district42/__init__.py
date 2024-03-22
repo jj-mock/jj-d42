@@ -1,4 +1,4 @@
-from district42 import register_type, schema
+from district42 import optional, register_type, schema
 from district42_exp_types.uuid_str import UUIDStrSchema
 
 from ._version import version
@@ -12,6 +12,7 @@ HistoryItemSchema = schema.dict({
     "request": HistoryRequestSchema(),
     "response": HistoryResponseSchema(),
     "tags": schema.list(UUIDStrSchema()),
+    optional("created_at"): schema.datetime,
 })
 
 HistorySchema = schema.list(HistoryItemSchema)
