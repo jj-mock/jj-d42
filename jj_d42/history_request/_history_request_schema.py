@@ -1,12 +1,12 @@
 from typing import Any, cast
 
-from district42 import SchemaVisitor
-from district42 import SchemaVisitorReturnType as ReturnType
-from district42 import schema
-from district42.types import DictSchema, GenericTypeAliasSchema, TypeAliasProps
+from d42 import schema
+from d42.declaration import SchemaVisitor
+from d42.declaration import SchemaVisitorReturnType as ReturnType
+from d42.declaration.types import DictSchema, GenericTypeAliasSchema, TypeAliasProps
 
-from jj_district42.types.header_list import HeaderListSchema
-from jj_district42.types.param_list import ParamListSchema
+from jj_d42.types.header_list import HeaderListSchema
+from jj_d42.types.param_list import ParamListSchema
 
 __all__ = ("HistoryRequestSchema", "HistoryRequestProps", "RequestSchema",)
 

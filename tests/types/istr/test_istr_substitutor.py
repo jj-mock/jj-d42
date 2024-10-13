@@ -2,11 +2,11 @@ from typing import Callable
 
 import pytest
 from baby_steps import given, then, when
+from d42 import substitute
+from d42.substitution.errors import SubstitutionError
 from pytest import raises
-from revolt import substitute
-from revolt.errors import SubstitutionError
 
-from jj_district42.types.istr import IStrSchema
+from jj_d42.types.istr import IStrSchema
 
 
 def test_istr_substitution():

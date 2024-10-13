@@ -1,6 +1,6 @@
 from typing import Any
 
-from blahblah import Generator
+from d42.generation import Generator
 from jj.mock import HistoryRequest
 
 from ._history_request_schema import HistoryRequestSchema

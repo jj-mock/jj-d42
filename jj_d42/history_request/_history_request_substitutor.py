@@ -1,10 +1,10 @@
 from typing import Any, cast
 
+from d42.substitution import Substitutor, SubstitutorValidator
+from d42.validation import ValidationResult
 from jj.mock import HistoryRequest
 from niltype import Nil, Nilable
-from revolt import Substitutor, SubstitutorValidator
 from th import PathHolder
-from valera import ValidationResult
 
 from ._history_request_schema import HistoryRequestSchema
 

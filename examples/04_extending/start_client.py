@@ -2,10 +2,9 @@ from uuid import uuid4
 
 import jj
 import httpx
-from district42 import schema
+from d42 import schema, validate_or_fail
 from jj.mock import mocked
-from jj_district42 import HistoryItemSchema
-from valera import validate_or_fail
+from jj_d42 import HistoryItemSchema
 
 
 HistoryItemSchema = HistoryItemSchema + schema.dict({

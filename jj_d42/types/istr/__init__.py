@@ -1,18 +1,17 @@
 import random
 from typing import Any, cast
 
-from blahblah import Generator
-from district42 import Props, SchemaVisitor
-from district42 import SchemaVisitorReturnType as ReturnType
-from district42.errors import make_already_declared_error, make_invalid_type_error
-from district42.representor import Representor
-from district42.types import Schema
+from d42.declaration import Props, Schema, SchemaVisitor
+from d42.declaration import SchemaVisitorReturnType as ReturnType
+from d42.declaration.errors import make_already_declared_error, make_invalid_type_error
+from d42.generation import Generator
+from d42.representation import Representor
+from d42.substitution import Substitutor
+from d42.substitution.errors import make_substitution_error
+from d42.validation import ValidationResult, Validator
+from d42.validation.errors import ValueValidationError
 from niltype import Nil, Nilable
-from revolt import Substitutor
-from revolt.errors import make_substitution_error
 from th import PathHolder
-from valera import ValidationResult, Validator
-from valera.errors import ValueValidationError
 
 __all__ = ("IStrSchema", "IStrProps",
            "IStrRepresentor", "IStrGenerator", "IStrValidator", "IStrSubstitutor",)
@@ -50,7 +49,7 @@ class IStrGenerator(Generator, extend=True):
     def visit_istr(self, schema: IStrSchema, **kwargs: Any) -> str:
         if schema.props.value is not Nil:
             modifier = random.choice((str, str.lower, str.upper))
-            return modifier(schema.props.value)  # type: ignore
+            return modifier(schema.props.value)
         return ""
 
 

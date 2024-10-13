@@ -1,12 +1,11 @@
 from baby_steps import given, then, when
-from district42 import schema
+from d42 import schema, substitute
+from d42.substitution.errors import SubstitutionError
 from multidict import CIMultiDict
 from pytest import raises
-from revolt import substitute
-from revolt.errors import SubstitutionError
 
-from jj_district42 import HistoryResponseSchema
-from jj_district42.history_response import ResponseSchema
+from jj_d42 import HistoryResponseSchema
+from jj_d42.history_response import ResponseSchema
 
 from ._utils import make_history_response
 

@@ -1,15 +1,15 @@
-# jj-district42
+# jj-d42
 
-[![Codecov](https://img.shields.io/codecov/c/github/jj-mock/jj-district42/master.svg?style=flat-square)](https://codecov.io/gh/jj-mock/jj-district42)
-[![PyPI](https://img.shields.io/pypi/v/jj-district42.svg?style=flat-square)](https://pypi.python.org/pypi/jj-district42/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/jj-district42?style=flat-square)](https://pypi.python.org/pypi/jj-district42/)
-[![Python Version](https://img.shields.io/pypi/pyversions/jj-district42.svg?style=flat-square)](https://pypi.python.org/pypi/jj-district42/)
+[![Codecov](https://img.shields.io/codecov/c/github/jj-mock/jj-d42/master.svg?style=flat-square)](https://codecov.io/gh/jj-mock/jj-d42)
+[![PyPI](https://img.shields.io/pypi/v/jj-d42.svg?style=flat-square)](https://pypi.python.org/pypi/jj-d42/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/jj-d42?style=flat-square)](https://pypi.python.org/pypi/jj-d42/)
+[![Python Version](https://img.shields.io/pypi/pyversions/jj-d42.svg?style=flat-square)](https://pypi.python.org/pypi/jj-d42/)
 
 
 ## Installation
 
 ```sh
-pip3 install jj-district42
+pip3 install jj-d42
 ```
 
 ## Usage
@@ -18,8 +18,8 @@ pip3 install jj-district42
 import jj
 import httpx
 from jj.mock import mocked
-from jj_district42 import HistorySchema
-from valera import validate_or_fail
+from jj_d42 import HistorySchema
+from d42 import validate_or_fail
 
 
 matcher = jj.match("GET", "/users")
@@ -42,4 +42,4 @@ assert validate_or_fail(
 )
 ```
 
-More examples are available [here](https://github.com/jj-mock/jj-district42/tree/master/examples)
+More examples are available [here](https://github.com/jj-mock/jj-d42/tree/master/examples)

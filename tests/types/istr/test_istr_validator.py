@@ -2,12 +2,11 @@ from typing import Callable
 
 import pytest
 from baby_steps import given, then, when
-from district42 import schema
+from d42 import schema, validate
+from d42.validation.errors import TypeValidationError, ValueValidationError
 from th import PathHolder
-from valera import validate
-from valera.errors import TypeValidationError, ValueValidationError
 
-from jj_district42.types.istr import IStrSchema
+from jj_d42.types.istr import IStrSchema
 
 
 @pytest.mark.parametrize("modifier", [str, str.lower, str.upper])

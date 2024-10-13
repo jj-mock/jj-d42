@@ -1,8 +1,8 @@
 from baby_steps import given, then, when
-from blahblah import generate
+from d42.generation import generate
 from jj.mock import HistoryRequest
 
-from jj_district42 import HistoryRequestSchema
+from jj_d42 import HistoryRequestSchema
 
 
 def test_history_request_generation():

@@ -1,7 +1,7 @@
 from baby_steps import given, then, when
-from district42 import represent
+from d42.representation import represent
 
-from jj_district42.types.istr import IStrSchema
+from jj_d42.types.istr import IStrSchema
 
 
 def test_istr_representation():

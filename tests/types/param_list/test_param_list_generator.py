@@ -1,7 +1,7 @@
 from baby_steps import given, then, when
-from blahblah import fake
+from d42 import fake
 
-from jj_district42.types.param_list import ParamListSchema
+from jj_d42.types.param_list import ParamListSchema
 
 
 def test_param_list_generation():

@@ -1,7 +1,7 @@
 from baby_steps import given, then, when
-from blahblah import fake
+from d42 import fake
 
-from jj_district42.types.header_list import HeaderListSchema
+from jj_d42.types.header_list import HeaderListSchema
 
 
 def test_header_list_generation():

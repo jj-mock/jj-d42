@@ -1,11 +1,10 @@
 from baby_steps import given, then, when
-from district42 import schema
-from district42_exp_types.unordered import unordered_schema
+from d42 import schema, substitute
+from d42.substitution.errors import SubstitutionError
 from pytest import raises
-from revolt import substitute
-from revolt.errors import SubstitutionError
 
-from jj_district42.types.param_list import ParamListSchema
+from jj_d42.types.param_list import ParamListSchema
+from jj_d42.types.unordered import unordered_schema
 
 
 def test_param_list_empty_list_substitution():

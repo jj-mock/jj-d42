@@ -1,8 +1,8 @@
 import jj
 import httpx
 from jj.mock import mocked
-from jj_district42 import HistorySchema
-from valera import validate_or_fail
+from jj_d42 import HistorySchema
+from d42 import validate_or_fail
 
 
 matcher = jj.match("*", "/users")

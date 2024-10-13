@@ -1,3 +1,3 @@
-jj-district42~=1.0
+jj-d42~=2.0
 httpx~=0.22
 xmltodict~=0.12

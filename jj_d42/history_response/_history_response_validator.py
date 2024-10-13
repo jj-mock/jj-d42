@@ -1,9 +1,9 @@
 from typing import Any
 
+from d42.validation import ValidationResult, Validator
 from jj.mock import HistoryResponse
 from niltype import Nil, Nilable
 from th import PathHolder
-from valera import ValidationResult, Validator
 
 from ._history_response_schema import HistoryResponseSchema
 

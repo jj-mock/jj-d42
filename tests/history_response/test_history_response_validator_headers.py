@@ -1,14 +1,12 @@
 from baby_steps import given, then, when
-from district42 import schema
-from district42_exp_types.unordered import UnorderedContainsValidationError
+from d42 import schema, substitute, validate
+from d42.validation.errors import ExtraElementValidationError
 from multidict import CIMultiDict
-from revolt import substitute
 from th import PathHolder
-from valera import validate
-from valera.errors import ExtraElementValidationError
 
-from jj_district42 import HistoryResponseSchema
-from jj_district42.types.istr import IStrSchema
+from jj_d42 import HistoryResponseSchema
+from jj_d42.types.istr import IStrSchema
+from jj_d42.types.unordered import UnorderedContainsValidationError
 
 from ._utils import make_history_response
 

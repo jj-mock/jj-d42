@@ -1,7 +1,7 @@
 from baby_steps import given, then, when
-from blahblah import fake
+from d42 import fake
 
-from jj_district42.types.istr import IStrSchema
+from jj_d42.types.istr import IStrSchema
 
 
 def test_istr_generation():

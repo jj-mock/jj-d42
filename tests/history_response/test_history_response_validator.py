@@ -1,12 +1,15 @@
 from baby_steps import given, then, when
-from district42 import from_native, schema
+from d42 import schema, substitute, validate
+from d42.utils import from_native
+from d42.validation.errors import (
+    SchemaMismatchValidationError,
+    TypeValidationError,
+    ValueValidationError,
+)
 from jj.mock import HistoryResponse
-from revolt import substitute
 from th import PathHolder
-from valera import validate
-from valera.errors import SchemaMismatchValidationError, TypeValidationError, ValueValidationError
 
-from jj_district42 import HistoryResponseSchema
+from jj_d42 import HistoryResponseSchema
 
 from ._utils import make_history_response
 

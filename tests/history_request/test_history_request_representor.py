@@ -1,7 +1,7 @@
 from baby_steps import given, then, when
-from district42 import represent
+from d42.representation import represent
 
-from jj_district42 import HistoryRequestSchema
+from jj_d42 import HistoryRequestSchema
 
 
 def test_history_request_representation():

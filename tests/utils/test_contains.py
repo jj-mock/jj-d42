@@ -1,7 +1,7 @@
 from baby_steps import given, then, when
 from pytest import raises
 
-from jj_district42.utils import contains
+from jj_d42.utils import contains
 
 
 def test_contains_empty():

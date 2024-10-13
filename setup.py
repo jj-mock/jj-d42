@@ -12,7 +12,7 @@ def find_dev_required():
 
 
 setup(
-    name="jj-district42",
+    name="jj-d42",
     version="1.2.1",
     description="",
     long_description=open("README.md").read(),
@@ -20,14 +20,14 @@ setup(
     author="Nikita Tsvetkov",
     author_email="tsv1@fastmail.com",
     python_requires=">=3.8",
-    url="https://github.com/jj-mock/jj-district42",
+    url="https://github.com/jj-mock/jj-d42",
     project_urls={
         "Docs": "https://jj-mock.io/docs/integrations/d42",
-        "GitHub": "https://github.com/jj-mock/jj-district42",
+        "GitHub": "https://github.com/jj-mock/jj-d42",
     },
     license="Apache-2.0",
     packages=find_packages(exclude=("tests",)),
-    package_data={"jj_district42": ["py.typed"]},
+    package_data={"jj_d42": ["py.typed"]},
     install_requires=find_required(),
     tests_require=find_dev_required(),
     classifiers=[

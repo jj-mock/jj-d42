@@ -1,8 +1,8 @@
 from baby_steps import given, then, when
-from district42 import schema
+from d42 import schema
 from pytest import raises
 
-from jj_district42 import HistoryResponseSchema
+from jj_d42 import HistoryResponseSchema
 
 
 def test_history_response_declaration():
