@@ -13,7 +13,7 @@ def find_dev_required():
 
 setup(
     name="jj-d42",
-    version="1.2.1",
+    version="2.0.0",
     description="",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
